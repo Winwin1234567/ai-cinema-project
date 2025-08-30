@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>18</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet" href="{% static 'css/styles2.css'%}" type="text/css" />
+<link rel="stylesheet" href="{% static 'css/ticketstyles2.css'%}" type="text/css" />
+<style>
+
+
+.btn.current {
+  background-color: #2e31f0;
+  /* Green */
+  color: #FFFFFF;
+}
+
+</style>
+</head>
+<body>
+
+
+  {% include 'header.html' %}
+
+ 
+<div class="sidenav">
+  
+
+<div id="menu" class="menu">
+    
+  <ul>
+    <li><a class="btn" href="#" style="font-weight: bold; color: black; margin: 5%;" >Categories</a></li>
+    <li><a class="btn" href="{% url 'mocategories' %}">All</a></li>
+    <li><a  class="btn" href="{% url 'movielist' 'animations' %}">Animations</a></li>
+    <li><a class="btn" href="{% url 'movielist' 'sci-fi' %}">Scifi</a></li>
+   
+    <li><a class="btn" href="{% url 'movielist' 'horrors' %}">Horrors</a></li>
+    <li><a class="btn" href="{% url 'movielist' '18-' %}">18-🥳</a></li>
+  </ul>
+
+
+
+
+
+
+  
+</div>
+</div>
+
+<script>
+    
+  
+  let current_url = document.location;
+  document.querySelectorAll(" .menu .btn").forEach(function(e){
+     if(e.href == current_url){
+        e.classList += " current";
+     }
+  });
+
+</script>
+
+</body>
+</html>

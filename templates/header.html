@@ -1,0 +1,81 @@
+{% load static %}
+<style>
+
+
+  .current {
+    background-color: #72a3fd;
+    /* Green */
+    
+  }
+  
+  </style>
+
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #b2d7f1;">
+   
+    <ul class="navbar-nav">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Categories
+      </a>
+      <ul class="dropdown-menu bg-transparent " aria-labelledby="navbarDropdownMenuLink">
+        <li><a class="dropdown-item text-white" href="{% url 'mocategories' %}">All</a></li>
+
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' 'sci-fi' %}">si-fi</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' 'horrors' %}">horrors</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' '18-' %}">18-😁</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' 'Comedy' %}">Comedy</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' 'Fantasy' %}">Fantasy</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' 'Action' %}">Action</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' 'Drama' %}">Drama</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' 'Romance' %}">Romance</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' 'Mystery' %}">Mystery</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' 'Thriller' %}">Thriller</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' 'Adventure' %}">Adventure</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' 'Animation' %}">Animation</a></li>
+        <li><a class="dropdown-item text-white" href="{% url 'movielist' '18+' %}">18+🧐</a></li>
+      </ul>
+    </li>
+</ul>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <a class="navbar-brand" href="#"><img src="{% static 'images/logo1.png' %}">AI Cinema</a>
+      <ul class="navbar-nav">
+
+       
+        <li class="nav-item">
+          <a class="nav-link" href="/mymovie/home/">Home </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Admin login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{% url 'trace' %}">trace your ticket status</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+ 
+ <script>
+    
+  
+  let current_url1 = document.location;
+  document.querySelectorAll(" .nav-link").forEach(function(e){
+     if(e.href == current_url1){
+        e.classList += " current";
+     }
+  });
+
+  
+  let current_url2 = document.location;
+  document.querySelectorAll(" .dropdown-item").forEach(function(e){
+     if(e.href == current_url2){
+        e.classList += " current";
+     }
+  });
+
+</script>

@@ -1,0 +1,115 @@
+{% extends 'base.html'%}
+{%load static %}
+{% block body%}
+<style>
+    .search-wrapper{
+        padding: 40px;
+    }
+</style>
+
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert {{message.tags}}   alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+{% endfor %}
+{% endif %}
+
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+    <p style="color: rgb(244, 248, 15);">{{trace1}}</p>
+<form action="{% url 'trace' %}">
+
+    <div class="wrapper">
+        <img src="{% static  'images/p4.jpg' %}" class="img-fluid img">
+        <div class="search-wrapper">
+       
+
+           <input type="search" class="form-control" name="search"  placeholder="trace your booking">
+                
+              &nbsp;&nbsp;  
+
+            <button class="btn btn-outline-success" type="submit">Trace</button>
+               
+        </div>
+    </div>
+</form>
+{% for t in ticket_id%}
+
+<div class="containert">
+    <div class="cardt cardt-left">
+        <h4>AI <span>Cinema</span></h4>
+        <div class="title">
+          <h3> Ticket status:
+            {% if t.moneystatus_completed == 1 %}
+              <span style="color: rgb(0, 167, 8);">Completed!</span>
+              {% elif t.moneystatus_completed == 0 %}
+                <span style="color:rgb(228, 27, 161);">Not Completed.Plz contact Cashier!</span>
+                {% endif %}
+             </h3>
+            <h2>{{t.moviename}}</h2>
+            <span>Movie name</span>
+        </div>
+        <div class="namet">
+            <h2>{{t.customer_name}} {{t.phone}}</h2>
+            <span>Name </span>&nbsp;&nbsp;&nbsp;<span>phone</span>
+        </div>
+        
+        <div class="seatt">
+            <h2>{{t.seatplace}}</h2>
+            <span>seat</span>
+           
+        </div>
+        
+        <div class="timet">
+            <h2>{{t.cusmovie_showdate}}</h2>
+            <span>time</span>
+        </div>
+        <div class="seatt">
+
+            <h2>booked time...<span style="font-weight: bold;">{{t.created_at}}</span></h2>
+            
+           
+        </div>
+       
+
+    </div>
+
+    <div class="cardt cardt-right">
+        <div class="eye">
+            
+        </div>
+        <br>
+        <div class="number">
+            <h2>plz pay it if u don't pay</h2>
+            <span>seat cost.</span>
+
+        </div>
+        <div class="barcode">
+          <p>{{t.customer_id_id}}</p> 
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+{% endfor %}
+</div>
+<div class="col-sm-4"></div>
+</div>
+
+{% endblock %}

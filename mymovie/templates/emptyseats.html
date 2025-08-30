@@ -1,0 +1,319 @@
+{% extends 'emptyseatbase.html'%}
+{%load static %}
+{% load humanize %}
+{% block body%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+ body{
+ background-color: black;
+}
+  
+  
+ 
+.screen {
+    
+  background-color:whitesmoke;
+
+  background-image: url("{{movieimage.url}} ");
+  background-size :500px 100px;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 500px;
+  margin: 15px 0;
+  transform: rotateX(-45deg);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+</style>
+    
+    <center>
+
+     <div class="row">
+       <div class="col-sm-4">
+        <div class="flex">
+        <div class="cube">
+          <div class="top"></div>
+          <div>
+            <span style="--i:0;"></span>
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"><div class="btn btn-primary"><a href="{% url 'mocategories'%}" class="text-white">< back</a></div></span>
+          </div>
+
+        </div>
+       </div>
+       </div>
+       <div class="col-sm-4">
+        <div class="flex">
+                  
+          <div class="cube">
+           
+            <div class="top"></div>
+            <div>
+              <span style="--i:0;"></span>
+              <span style="--i:1;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:3;"> <div class="btn btn-primary" onclick="window.location.reload();">show seats</div></span>
+            </div>
+
+          </div>
+          
+         </div>
+
+
+
+
+       </div>
+       <div class="col-sm-4">
+        <div class="flex">
+          <div class="cube">
+            <div class="top"></div>
+            <div>
+              <span style="--i:0;"></span>
+              <span style="--i:1;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:3;"></span>
+            </div>
+  
+          </div>
+         </div>
+
+       </div>
+       </div>
+       <div class="container2">
+        
+
+          
+          
+       <div class="container1">
+      
+         
+       <div class="screen"></div>
+         <form action="{% url 'seatupdate' %}" method="POST">
+           {% csrf_token %}
+           
+         <div class="row1">
+           
+         
+           
+          
+
+            {% for y in myemptyseatstatus %}
+           {% if y.movie_id_id == id and y.moviename != 'dumy' and y.seatplace != 'sc'  %}
+           
+           
+          
+           {% if y.seatstatus == True  %}
+           
+           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="top" title="Occupied">
+           <div class="seat"{% if y.seatplace == 'gh' %}style="width:225px"  {% endif %}{% if y.seatplace == 'mn' %}style="width:225px"{% endif %}{% if y.seatplace == 'family' %}style="width:900px"{% endif %}>💺<input type="checkbox" checked="checked" class="chkvalues" id="chk" name="boxes" value="{{y.seatplace}}" disabled="disabled">{{y.seatplace}}</div>
+         </span>
+           {% else   %}
+           
+           
+           <span class="d-inline-block" tabindex="0" data-toggle="tooltip" data-placement="bottom"  title="Available">
+           <div class="seat1" {% if y.seatplace == 'gh' %}style="width:225px;"
+             {% endif %}{% if y.seatplace == 'mn' %}style="width:225px" {% endif %}{% if y.seatplace == 'family' %}style="width:900px" {% endif %}>💺<input type="checkbox" class="chkvalues" id="chk" name="boxes" value="{{ y.seatplace}}" >{{ y.seatplace}}</div>
+           </span>
+           {% endif %}
+           {% endif %}
+           {% if y.movie_id_id == id and y.moviename == 'dumy' %} 
+           
+             <div class="seat2"></div>
+             
+           
+           {% endif %}
+
+
+          
+
+          {% endfor %}
+           
+         
+
+       </div>
+     </div>
+     </div> 
+
+
+     
+     
+       <div class="row mt-3">
+       <div class="col-sm-4"></div>
+       <div class="col-sm-4 bg-light">
+
+         <div class="card" style="width: 18rem;">
+          
+           <div class="card-body">
+             <h5 class="card-title">Card title</h5>
+             
+             
+
+
+
+       <input type="hidden" name="movie_id" id="movie_id" value="{{id}}" readonly>
+       <label for="moviename">movie name:</label>
+       <input type="text" class="form-control" name="movie_name" id="movie_name" value="{{name}}"  readonly>
+
+       <label for="moviedate">movie date:</label>
+       <input type="datetime" class="form-control" name="moviedate" id="moviedate" value="{{moviedate|date:"Y-m-d H:i:s" }}"  readonly>
+       
+       <label for="ticket_id">ticket id:</label>
+       <input type="text" class="form-control" name="ticketid" id="ticketid" value="{{ticketid}}"  readonly>
+
+       <label for="seatname">seat name:</label>
+       <input type="text" class="form-control" name="coursename" id="txtvalues"  readonly>
+
+       <input type="hidden" name="coursename1" id="txtvalues1" readonly>
+
+       <label for="seatnumber">numbers of seat:</label>
+       <input type="text" class="form-control" name="coursename2" id="txtvalues2" readonly>
+       {% for t in myticketprice %}
+       {% if t.ticketmovie_id_id == id %}
+       <label for="seatnumber">ticket price:</label>
+       <input type="text" class="form-control" name="coursename4" id="txtvalues4" value="{{t.ticketcost|intcomma}}" readonly>
+
+       <input type="hidden" class="form-control" name="coursename45" id="txtvalues5" value="{{t.ticketcost}}" readonly>
+       {% endif %}
+       {% endfor %}
+       <label for="total">total cost:</label>
+       <input type="text" class="form-control" name="coursename3" id="txtvalues3"  readonly>
+
+       <label for="customername">Customer Name:</label>
+       <input type="text" class="form-control" name="customername" id="customername"  required >
+
+       <label for="phone">Phone:</label>
+       <input type="text" class="form-control" name="phone" id="phone" required>
+       
+<br>
+<button class="btn btn-success" id="confirms" type="submit" onclick="location.href('/members/seatupdate/')"  style="display: none;">confirm seats!</button><br/>
+</div>
+
+           </div>
+         </div>
+<div class="col-sm-4"></div>
+ </form>
+
+
+   
+   
+  
+<div class="row mt-3"><div class="col-sm-4"></div>
+<div class="col-sm-4">    
+<button onclick="change(); change2();" class="btn btn-primary" id="myBtn" style="display: none;">to calculate seat</button>
+</div>
+<div class="col-sm-4"></div>
+</div>
+</center>
+   <script type="text/javascript">
+ 
+     $(document).ready(function(){
+
+     
+
+       $('.chkvalues').click(function(){
+       
+         
+
+         var txt ="";
+         var txt1 ="";
+         
+         
+      $('.chkvalues:checked').not("[disabled]").each(function(){
+
+      txt+= $(this).val()+','
+      txt1+= $(this).val()
+
+      $("#myBtn").show();
+
+});
+        
+       
+       $('#txtvalues').val(txt);
+       $('#txtvalues1').val(txt1);
+       
+     });
+   
+   });  
+   
+   
+   
+   </script>
+   <script>
+   var items = [];
+   
+   function change() {
+     boxvalue = document.getElementById('txtvalues1').value;
+     
+   for (var i = 0; i < boxvalue.length; i++) {
+    txt2 = items.push(boxvalue[i].value)
+   }
+     
+   $('#txtvalues2').val(txt2);
+   document.getElementById("myBtn").disabled = true;
+    
+     
+   }
+  
+   function change2(){
+   let x = document.getElementById('txtvalues2').value;
+   let y = document.getElementById('txtvalues5').value;
+   let z = x * y;
+   $('#txtvalues3').val(z);
+   }
+   </script>
+   <script>
+     $(function () {
+       $("#myBtn").on('click', function () {
+           $("#confirms").show();
+          
+
+           
+       });
+   });
+   </script>
+   <script>
+   $("#myBtn").on('click', function () {
+   $('input[type=checkbox]').each(function ()
+       {
+             //Check if the box is checked
+             
+                     
+              //if checkbox is NOT checked
+             
+           
+                     //Hide the choice
+                     $(this).hide();
+                  
+       
+       });
+
+ });
+   </script>
+   <script>
+      setTimeout(function() {
+   
+
+   $("#confirms").fadeOut('fast');
+   $('input[type=checkbox]').fadeOut('fast');
+   $('.seat').fadeOut('fast');
+   $('.seat1').fadeOut('fast');
+
+ }, 4000); 
+    
+       
+         $("#confirms").on('click', function () {
+           $("#confirms").hide();
+           setTimeout(function() {
+   
+
+   $("#confirms").fadeOut('fast');
+   $('input[type=checkbox]').fadeOut('fast');
+   $('.seat').fadeOut('slow');
+   $('.seat1').fadeOut('slow');
+
+ }, 10000); 
+      });
+   </script>
+  
+
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'adminbase.html'%}
+{%load static %}
+{% block body%}
+{% if user.is_staff or user.is_superuser %}
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert {{message.tags}}   alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+{% endfor %}
+{% endif %}
+
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Buttons</h1>
+
+    <div class="row">
+<div class="col-sm-3"></div>
+        <div class="col-sm-6">
+
+            <!-- Circle Buttons -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Circle Buttons</h6>
+                </div>
+                <div class="card-body">
+                    <p>Use Font Awesome Icons (included with this theme package) along with the circle
+                        buttons as shown in the examples below!</p>
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                            </div>
+                            <form class="user" action="#" method="post" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user " name="moviename"
+                                        id="moviename"  aria-describedby="movie name"
+                                        placeholder="Enter movie name..." value="{{customerlistu.moviename}}" readonly>
+                                </div>
+
+
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Movie name</label>
+                                    <select class="form-select" name="customermovie_id">
+    
+                                        {% for cusi in cusmovieid%}
+                                        <option value="{{cusi.id}}">{{cusi.moviename}}</option>
+                                        {% endfor %}
+                                    </select>
+    
+    
+                                        
+                                    </div>
+                                
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user " name="seatplace"
+                                            id="seatplace"  aria-describedby="seatplace"
+                                            placeholder="Enter seat place..." value="{{customerlistu.seatplace}}" readonly>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user " name="customer_id_id"
+                                            id="customer_id_id"  aria-describedby="customer_id_id"
+                                            placeholder="Enter customer_id_id..." value="{{customerlistu.customer_id_id}}" readonly>
+                                    </div> 
+
+
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user " name="total_cost"
+                                            id="total_cost"  aria-describedby="total_cost"
+                                            placeholder="Enter total_cost..." value="{{customerlistu.total_cost}}" readonly>
+                                    </div> 
+
+                                    
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user " name="customer_name"
+                                            id="customer_name"  aria-describedby="customer_name"
+                                            placeholder="Enter customer_name..." value="{{customerlistu.customer_name}}">
+                                    </div> 
+
+
+                                    
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user " name="phone"
+                                            id="phone"  aria-describedby="phone"
+                                            placeholder="Enter phone..." value="{{customerlistu.phone}}">
+                                    </div> 
+
+                                    
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user " name="cusmovie_showdate"
+                                            id="cusmovie_showdate"  aria-describedby="cusmovie_showdate"
+                                            placeholder="Enter cusmovie_showdate..." value="{{customerlistu.cusmovie_showdate|date:"Y-m-d H:i:s" }}" readonly>
+                                    </div> 
+
+                                    
+
+
+                                <div class="form-group">
+                                    <label for="seat status">Seat booking?:</label>
+                                    <div class="custom-control custom-checkbox small">
+                                        
+                                        <input type="checkbox" class="custom-check-input " name="moneystatus_completed" id="moneystatus_completed" {% if customerlistu.moneystatus_completed %}checked{% endif %}>
+                                       
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user " name="created_at"
+                                        id="created_at" placeholder="created_at" value="{{customerlistu.created_at|date:"Y-m-d H:i:s" }}" readonly>
+                                </div>
+
+
+                                
+                                <button class="btn btn-primary btn-user btn-block" type="submit">
+                                    Confirm customer ticket
+                                </button>
+                                <hr>
+                               
+                            </form>
+                            <hr>
+                            
+                        </div>
+                 
+                   
+                </div>
+            </div>
+
+            
+
+        </div>
+
+        
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+{% endif %}
+{% endblock %}

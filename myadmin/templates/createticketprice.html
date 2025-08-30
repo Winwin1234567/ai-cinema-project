@@ -1,0 +1,81 @@
+{% extends 'adminbase.html'%}
+{%load static %}
+{% block body%}
+{% if user.is_staff or user.is_superuser %}  
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Tickets Price</h1>
+
+    <div class="row">
+<div class="col-sm-3"></div>
+        <div class="col-sm-6">
+
+            <!-- Circle Buttons -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Tickets Price Creation</h6>
+                </div>
+                <div class="card-body">
+                    <p>Ticket price creation</p>
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                            </div>
+                            <form class="user" action="#" method="post" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user " name="ticketcost"
+                                        id="ticketcost" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"   aria-describedby="ticketcost"
+                                        placeholder="Enter ticket cost..." value="{{ticketcostu.ticketcost}}">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user " name="moviename"
+                                        id="moviename" placeholder="moviename" value="{{ticketcostu.moviename}}">
+                                </div>
+
+                                <div class="form-group">
+                                <label class="form-label">Movie name</label>
+                                <select class="form-select" name="ticketmovie_id">
+
+                                    {% for tm in ticketmovieid%}
+                                    <option value="{{tm.id}}">{{tm.moviename}}</option>
+                                    {% endfor %}
+                                </select>
+
+
+                                    
+                                </div>
+
+                               
+
+                              
+                                <button class="btn btn-primary btn-user btn-block" type="submit">
+                                    Create ticketprice
+                                </button>
+                                <hr>
+                               
+                            </form>
+                            <hr>
+                            
+                        </div>
+                 
+                   
+                </div>
+            </div>
+
+            
+
+        </div>
+
+        
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+{% endif %} 
+{% endblock %}

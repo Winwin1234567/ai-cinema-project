@@ -1,0 +1,70 @@
+{% extends 'emptyseatbase.html'%}
+{%load static %}
+{% block body%}
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert {{message.tags}}   alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+{% endfor %}
+{% endif %}
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4">
+    <center>
+<div class="card bg-light">
+<h3>Your tickets are here now!Please confirm it!</h3>
+<form action="{% url 'customer_create' %}" method="post" id="myform">
+    {% csrf_token %}
+<label for="movieid">movie id:</label>
+<input type="text" id="movieid" name="movieid" class="form-control" value="{{ movie_sid }}" readonly><br>
+
+
+<label for="moviename">movie name:</label>
+<input type="text" id="moviename" name="moviename" class="form-control" value="{{ movie_sname }}" readonly><br>
+
+
+<label for="moviedate">movie date:</label>
+<input type="datetime" id="moviedate" name="moviedate" class="form-control" value="{{ movie_sdate }}" readonly><br>
+
+<label for="seatname">seat name:</label>
+<input type="text" id="seatname" name="seatname" class="form-control" value="{{ coursename }}" readonly><br>
+
+
+<label for="ticket id">ticket id:</label>
+<input type="text" id="ticket_id" name="ticket_id" class="form-control" value="{{ticket_id}}" readonly><br>
+
+
+<label for="totalcost">totalcost:</label>
+<input type="text" id="totalcost" name="totalcost" class="form-control" value="{{ coursename3 }}" readonly><br>
+
+
+<label for="customername">customername:</label>
+<input type="text" id="customername" name="customername" class="form-control" value="{{ customername }}" readonly><br>
+
+
+<label for="customerphone">customer phone:</label>
+<input type="text" id="customerphone" name="customerphone" class="form-control" value="{{ phone }}" readonly><br>
+
+
+<button class="btn btn-success" id="confirms" onclick = "myFunction()" type="submit">confirm tickets!</button><br/>
+ </form>
+ </div>
+ </center>
+ </div>
+ <div class="col-md-4"></div>
+</div>
+<script>
+   function myFunction() { 
+document.getElementById("myform").reset();
+}
+</script>
+{% endblock %}

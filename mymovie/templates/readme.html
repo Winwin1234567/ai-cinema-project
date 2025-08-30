@@ -1,0 +1,266 @@
+{%load static %}
+ <!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Tooplate">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <title>AIcinema</title>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assetss/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assetss/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assetss/css/owl-carousel.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assetss/css/tooplate-artxibition1.css' %}">
+<!--
+
+Tooplate 2125 ArtXibition
+
+https://www.tooplate.com/view/2125-artxibition
+
+-->
+    </head>
+    
+    
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+   
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="#" class="logo"><img src="{% static 'images/logo1.png' %}">AI<em>CINEMA</em></a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="/mymovie/home/">Home</a></li>
+                            <li><a href="/mymovie/mocategories/">Tickets</a></li>
+                            <li><a href="/mymovie/aboutus/">About us</a></li>
+                            <li><a href="/mymovie/map/">Map</a></li>
+                            <li><a href="/mymovie/output/">Meet your fortune teller</a></li>  
+                            <li><a href="/mymovie/readme/" class="active">Read me</a></li> 
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <body>
+    <!-- ***** Header Area End ***** -->
+
+    <table class="table table-bordered table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Methods</th>
+            <th scope="col">Description</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>url:</td>
+            <td>http://127.0.0.1:8000/mymovie/home/</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>userinterface</td>
+            <td>Users can book seat and purchase seat tickets and trace the tickets status after paying prices with ticket id.</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>admin seat management</td>
+            <td>admin can manage seats.seats name must be unique and can use a,b,c,......alphabets for single seats.gh and mn must be used for couple seats that can be calculated as 2 seats.dummy....is a space between seats and can manage seating plans.
+                After seats arrangement,sc......must be put at the end of the seats to close seats selling.Seating sample can be seen in sample seating plans and if something is unclear,please contact us.
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">4</th>
+            <td>admin movie management</td>
+            <td>If movie status is checked,it means that the movie has already shown and cannot be seen in the userinterface.
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">5</th>
+            <td>admin customers management</td>
+            <td>If customers status is checked,it means that the customer has already paid ticket price and  ticket status completed can be seen in the userinterface.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td> roles</td>
+            <td>manager role that can manage seat status, seat plans and movie status and movie plans.
+                username...manager and pw...managersuperuser
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td> roles</td>
+            <td>cashier role that can manage ticket price status and customers status and customers ticket status.
+                username...cashier and pw...cashiersuperuser
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td> roles</td>
+            <td>admin role that can access to all status including admindashboard.
+                username...admin and pw...superuser
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">8</th>
+            <td> If you want to buy this kind of webapps </td>
+            <td>please contact k.w.t.
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">9</th>
+            <td> If you want to add new categories </td>
+            <td>please contact k.w.t.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+    
+    <!-- *** Footer *** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="address">
+                        <h4>K.W.T</h4>
+                        <span>#4660<br> Student From<br>Page Myanmar</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><a href="#">Thank you!</a></li>
+                            <li><a href="#">Venues</a></li>
+                            <li><a href="#">Guides</a></li>
+                            <li><a href="#">Videos</a></li>
+                            <li><a href="#">Outreach</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="hours">
+                        <h4>Open Hours</h4>
+                        <ul>
+                            <li>Mon to Fri: 10:00 AM to 8:00 PM</li>
+                            <li>Sat - Sun: 11:00 AM to 4:00 PM</li>
+                            <li>Holidays: Closed</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="under-footer">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-6">
+                                <p>Welcome</p>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <p class="copyright">Copyright 2024 AI Cinema 
+                    
+                    			<br>Design: <a rel="nofollow" href="https://www.tooplate.com" target="_parent">Tooplate</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="sub-footer">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="logo"><span>AI<em>Cinema</em></span></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="menu">
+                                    <ul>
+                                        <li><a href="/mymovie/home/" class="active">Home</a></li>
+                                        <li><a href="/mymovie/mocategories/">Tickets</a></li>
+                                        <li><a href="/mymovie/aboutus/" >About us</a></li>
+                                        <li><a href="/mymovie/map/">Map</a></li> 
+                                        <li><a href="/mymovie/readme/">Read me</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="social-links">
+                                    <ul>
+
+
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="{% static 'assetss/js/jquery-2.1.0.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assetss/js/popper.js' %}"></script>
+    <script src="{% static 'assetss/js/bootstrap.min.js' %}"></script>
+
+    <!-- Plugins -->
+    <script src="{% static 'assetss/js/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'assetss/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'assetss/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assetss/js/imgfix.min.js' %}"></script> 
+    <script src="{% static 'assetss/js/mixitup.js' %}"></script> 
+    <script src="{% static 'assetss/js/accordions.js' %}"></script>
+    <script src="{% static 'assetss/js/owl-carousel.js' %}"></script>
+    
+    <!-- Global Init -->
+    <script src="{% static 'assetss/js/custom.js' %}"></script>
+  </body>
+</html>

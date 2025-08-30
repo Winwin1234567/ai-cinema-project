@@ -1,0 +1,124 @@
+{% extends 'adminbase.html'%}
+{%load static %}
+{% block body%}
+
+
+{% if user.is_staff or user.is_superuser %}
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert {{message.tags}}   alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+{% endfor %}
+{% endif %}
+
+
+
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Movies creation</h1>
+
+    <div class="row">
+<div class="col-sm-3"></div>
+        <div class="col-sm-6">
+
+            <!-- Circle Buttons -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Movies Creation</h6>
+                </div>
+                <div class="card-body">
+                    <p>Movies</p>
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                            </div>
+                            <form class="user" action="#" method="post" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user " name="moviename"
+                                        id="moviename"  aria-describedby="movie name"
+                                        placeholder="Enter Movie name..." value="{{movielistu.moviename}}">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user " name="moviedescription"
+                                        id="moviedescription" placeholder="moviedescription" value="{{movielistu.moviedescription}}">
+                                </div>
+
+                                <div class="form-group">
+                                <label class="form-label">Movie Categories</label>
+                                <select class="form-select" name="moviecategories_id">
+
+                                    {% for i in moviecategories%}
+                                    <option value="{{i.id}}">{{i.name}}</option>
+                                    {% endfor %}
+                                </select>
+
+
+                                    
+                                </div>
+
+                               
+
+                                <div class="form-group">
+                                    <label class="form-label">Movie Showing date</label>
+                                    <input type="datetime-local" class="form-control form-control-user " name="movie_showdate"
+                                        id="movie_showdate" placeholder="movie_showdate" value="{{movielistu.movie_showdate|date:"Y-m-d H:i:s" }}">
+                                </div>
+                               
+                                <div class="form-group">
+                                    {% if movielistu.movie_image%}
+                                    <img src="{{movielistu.movie_image.url}}" alt="image" class="prod-size" height="60px" width="60px">
+                                    {% endif %}
+                                    <input type="file" class="form-control form-control-user " name=" movie_image"
+                                        id="movie_image" placeholder="movie_image">
+                                </div>
+                                <div class="form-group">
+                                    <label for="movie status">Movie status completed?:</label>
+                                    <div class="custom-control custom-checkbox small">
+                                        
+                                        <input type="checkbox" class="custom-check-input " name="movie_status" id="movie_status" {% if movielistu.movie_status %}checked{% endif %}>
+                                       
+
+                                       
+  
+    
+
+
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-user btn-block" type="submit">
+                                    Create Movies
+                                </button>
+                                <hr>
+                               
+                            </form>
+                            <hr>
+                            
+                        </div>
+                 
+                   
+                </div>
+            </div>
+
+            
+
+        </div>
+
+        
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+{% endif %}
+
+{% endblock %}

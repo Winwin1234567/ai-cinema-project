@@ -1,0 +1,182 @@
+{% extends 'adminbase.html'%}
+{%load static %}
+{% block body%}
+
+<style>
+
+  #summary {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  #summary p.collapse:not(.show) {
+      height: 42px !important;
+      overflow: hidden;
+    
+      display: -webkit-box;
+      -webkit-line: 2;
+      -webkit-box-orient: vertical;  
+  }
+  
+  #summary p.collapsing {
+      min-height: 42px !important;
+  }
+  
+  #summary a.collapsed:after  {
+      content: '+ Read More';
+  }
+  
+  #summary a:not(.collapsed):after {
+      content: '- Read Less';
+  }
+  
+  </style>
+  
+
+{% if user.is_staff or user.is_superuser %}
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert {{message.tags}}   alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+{% endfor %}
+{% endif %}
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>  
+  {% if allmovielist.has_other_pages %}
+  <div style="display: flex;justify-content: center;">
+    <nav aria-label="Topics pagination" class="mb-4">
+      <ul class="pagination">
+        {% if allmovielist.has_previous %}
+        <li class="page_item">
+          <a class="page-link" href="?page={{allmovielist.previous_page_number}}">Previous</a>
+        </li>
+        {% else %}
+        <li class="page_item_disable">
+          <span class="page-link">Previous</span>
+        </li>
+       {% endif %}
+       {% for page_num in allmovielist.paginator.page_range %}
+       {% if allmovielist.number == page_num %}
+       <li class="page_item_active">
+        <span class="page_link">
+          {{page_num}}
+
+        </span>
+
+       </li>
+       {% else %}
+       <li class="page_item">
+        <a class="page-link" href="?page={{page_num}}">{{ page_num }}</a>
+       </li>
+       {% endif %}
+       {% endfor %}
+       {% if allmovielist.has_next %}
+       <li class="page_item">
+        <a  class="page-link" href="?page={{allmovielist.next_page_number}}">Next</a>
+
+       </li>
+       {% else %}
+       <li class="page_item_disable">
+        <span class="page-link">Next</span>
+       </li>
+       {% endif %}
+      </ul>
+
+    </nav>
+
+  </div>
+  {% endif %}
+
+  
+
+
+
+    
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                  <!-- DataTales Example -->
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Movies</h6>
+                    </div>
+                    <div class="card-body">
+                      <input id="myInput" type="text" placeholder="Search.." class="mb-4 form-control">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="myTable" width="100%" cellspacing="0" border="1">
+                                <thead>
+                                    <tr>
+                                        <th>Movie Name</th>
+                                        <th>Movie Description</th>
+                                        <th>Movie category</th>
+                                        <th>Movie show date</th>
+                                        <th>Image</th>
+                                        <th>Movie status</th>
+                                        <th colspan="3">Action <button class="btn btn-primary"><a href="{% url 'movie_create' %}" class="text-white">create movie</a></button></th>
+                                    </tr>
+                                </thead>
+                               
+                                <tbody>
+                                    {% for ml in allmovielist %}
+                                    <tr>
+                                        <td>{{ ml.moviename }}</td>
+                                        <td><div id="summary"><p class=" collapse" id="collapseSummary">{{ ml.moviedescription }}</p><a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a></div></td>
+                                        <td>{{ ml.moviecategories_id }}</td>
+                                        <td>{{ ml.movie_showdate}}</td>
+                                        <td>
+                                            {% if ml.movie_image %}
+                                                        <img src="{{ml.movie_image.url}}" width="50px" height="50px" alt="{{ ml.moviename }}">
+                                                         {% endif %}
+                                           
+                                        <td>
+                                          {% if ml.movie_status == 1 %}
+                                          <p style="color: red;">New or Shown!</p>
+                                          {% elif ml.movie_status == 0 %}
+                                            <p style="color:green;">showing now!</p>
+                                            {% endif %}
+
+                                        </td>
+                                        
+                                        <td>
+                                          
+                                          <button class="btn btn-success"><a href="{% url 'movielist_update' ml.id%}" class="text-white">update</a></button></td>
+                                          
+                                         <td> <button class="btn btn-danger"><a href="{% url 'delete_movielist' ml.id%}" onclick="return confirm('Are you sure?');" class="text-white">delete</a></button>
+                 
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+
+
+                <script>
+                  $(document).ready(function(){
+                    $("#myInput").on("keyup", function() {
+                      var value = $(this).val().toLowerCase();
+                      $("#myTable tr").filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                      });
+                    });
+                  });
+                  </script>
+
+<script>
+  $('#read-more').click(function() {
+    $('#description').css('width','50%');
+});
+</script>
+{% endif %}
+{% endblock %}

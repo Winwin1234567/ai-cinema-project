@@ -1,0 +1,118 @@
+{% extends 'adminbase.html'%}
+{%load static %}
+{% block body%}
+
+{% if user.is_staff or user.is_superuser %}  
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert {{message.tags}}   alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+{% endfor %}
+{% endif %}
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Seats</h1>
+
+    <div class="row">
+<div class="col-sm-3"></div>
+        <div class="col-sm-6">
+
+            <!-- Circle Buttons -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Seats Creation</h6>
+                </div>
+                <div class="card-body">
+                    <p>Seats Creation</p>
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                            </div>
+                            <form class="user" action="#" method="post" enctype="multipart/form-data" >
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user " name="seatplace"
+                                        id="seatplace"  aria-describedby="seat place"
+                                        placeholder="Enter seat name..." value="{{seatlistu.seatplace}}">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="seat status">Seat booking?:</label>
+                                    <div class="custom-control custom-checkbox small">
+                                        
+                                        <input type="checkbox" class="custom-check-input " name="seatstatus" id="seatstatus" {% if seatlistu.seatstatus %}checked{% endif %}>
+                                       
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user " name="moviename"
+                                        id="moviename" placeholder="moviename" value="{{seatlistu.moviename}}">
+                                </div>
+
+                                <div class="form-group">
+                                <label class="form-label">Movie name</label>
+                                <select class="form-select" name="movie_id">
+
+                                    {% for i in movieid%}
+                                    <option value="{{i.id}}">{{i.moviename}}</option>
+                                    {% endfor %}
+                                </select>
+
+
+                                    
+                                </div>
+
+                               
+
+                                
+                                <div class="form-group">
+                                    <label for="movie status">Seat booking completed?:</label>
+                                    <div class="custom-control custom-checkbox small">
+                                        
+                                        <input type="checkbox" class="custom-check-input " name="seatstatus_completed" id="seatstatus_completed" {% if seatlistu.seatstatus_completed %}checked{% endif %}>
+                                       
+
+                                       
+  
+    
+
+
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-user btn-block" type="submit">
+                                    Create Seats
+                                </button>
+                                <hr>
+                               
+                            </form>
+                            <hr>
+                            
+                        </div>
+                 
+                   
+                </div>
+            </div>
+
+            
+
+        </div>
+
+        
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+{% endif %} 
+{% endblock %}

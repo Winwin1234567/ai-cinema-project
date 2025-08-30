@@ -1,0 +1,68 @@
+{% extends 'adminbase.html'%}
+{%load static %}
+{% block body%}
+  
+{% if user.is_staff or user.is_superuser %}   
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Customer Detail</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" border="1">
+                <thead>
+                    <tr>
+                        
+                        <th>Movie Name</th>
+                        <th>Customer Movie id</th>
+                        <th>Seat Place</th>
+                        <th>Customer id</th>
+                        <th>Total cost</th>
+                        <th>Customer Name</th>
+                        <th>Phone</th>
+                        <th>Movie show date</th>
+                        <th>Money status completed?:</th>
+                        <th>Customer booked date</th>
+
+                        
+                    </tr>
+                </thead>
+               
+                <tbody>
+                    {% for cd in customer_detail %}
+                    <tr>
+                        
+                        <td>{{ cd.moviename }}</td>
+                        <td>{{ cd.customermovie_id }}</td>
+                        <td>{{cd.seatplace}}</td>
+                        <td>{{ cd.customer_id_id }}</td>
+                        <td>{{ cd.total_cost}}</td>
+                       
+                           
+                        <td>{{ cd.customer_name}}</td>
+                        <td>{{ cd.phone}}</td>
+                        <td>{{ cd.cusmovie_showdate}}</td>
+                        <td>
+                            {% if cd.moneystatus_completed == 1 %}
+                            <p style="color: green;">Paid!</p>
+                            {% elif cd.moneystatus_completed == 0 %}
+                              <p style="color:red;">Not paid!</p>
+                              {% endif %}
+
+                        </td>
+                        <td>{{cd.created_at}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endif %} 
+{% endblock %}

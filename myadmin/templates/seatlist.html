@@ -1,0 +1,144 @@
+{% extends 'adminbase.html'%}
+{%load static %}
+{% block body%}
+
+{% if user.is_staff or user.is_superuser %}
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert {{message.tags}}   alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+{% endfor %}
+{% endif %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+{% if allseatlist.has_other_pages %}
+<div style="display: flex;justify-content: center;">
+  <nav aria-label="Topics pagination" class="mb-4">
+    <ul class="pagination">
+      {% if allseatlist.has_previous %}
+      <li class="page_item">
+        <a class="page-link" href="?page={{allseatlist.previous_page_number}}">Previous</a>
+      </li>
+      {% else %}
+      <li class="page_item_disable">
+        <span class="page-link">Previous</span>
+      </li>
+     {% endif %}
+     {% for page_num in allseatlist.paginator.page_range %}
+     {% if allseatlist.number == page_num %}
+     <li class="page_item_active">
+      <span class="page_link">
+        {{page_num}}
+
+      </span>
+
+     </li>
+     {% else %}
+     <li class="page_item">
+      <a class="page-link" href="?page={{page_num}}">{{ page_num }}</a>
+     </li>
+     {% endif %}
+     {% endfor %}
+     {% if allseatlist.has_next %}
+     <li class="page_item">
+      <a  class="page-link" href="?page={{allseatlist.next_page_number}}">Next</a>
+
+     </li>
+     {% else %}
+     <li class="page_item_disable">
+      <span class="page-link">Next</span>
+     </li>
+     {% endif %}
+    </ul>
+
+  </nav>
+
+</div>
+{% endif %}
+
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-primary">Seats</h6>
+      </div>
+      <div class="card-body">
+        <input id="myInput" type="text" placeholder="Search.." class="mb-4 form-control">
+          <div class="table-responsive">
+              <table class="table table-bordered" id="myTable" width="100%" cellspacing="0" border="1">
+                  <thead>
+                      <tr>
+                          <th>Seat Name</th>
+                          <th>Seat booking</th>
+                          <th>Movie name</th>
+                          <th>Movie Category</th>
+                          <th>Seat booking completed?</th>
+                          
+                          <th colspan="3">Action <button class="btn btn-primary"><a href="{% url 'seat_create' %}" class="text-white">create seat</a></button></th>
+                      </tr>
+                  </thead>
+                 
+                  <tbody>
+                      {% for sl in allseatlist %}
+                      <tr>
+                          <td>{{ sl.seatplace }}</td>
+                          <td>
+                            {% if sl.seatstatus == 1 %}
+                            <p style="color: red;">occupied</p>
+                            {% elif sl.seatstatus == 0 %}
+                              <p style="color:green;">Not occupied</p>
+                              {% endif %}
+
+
+                          </td>
+                          <td>{{ sl.moviename }}</td>
+                          <td>{{ sl.movie_id}}</td>
+                          
+                          <td>
+                            {% if sl.seatstatus_completed == 1 %}
+                            <p style="color: green;">Yes</p>
+                            {% elif sl.seatstatus_completed == 0 %}
+                              <p style="color:red;">No</p>
+                              {% endif %}
+
+
+                          </td>
+                          <td>
+                            <button class="btn btn-danger"><a href="{% url 'delete_seatlist' sl.id%}" onclick="return confirm('Are you sure?');" class="text-white">delete</a>
+                          </td>
+                          <td>
+                            <button class="btn btn-success"><a href="{% url 'seatlist_update' sl.id%}"  class="text-white">update</a>
+                          </td>
+                          
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+  </div>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    </script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,99 @@
+<p> </p>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<style>
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000000;
+  }
+  .cube{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+   
+    animation: animate 4s linear infinite;
+  }
+  
+  @keyframes animate {
+    0% 
+    {
+      transform: rotateX(-30deg) rotateY(0deg);
+    }
+    100%
+    {
+      transform: rotateX(-30deg) rotateY(180deg);
+    }
+    
+  }
+  .cube div
+  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+  }
+
+  .cube div span
+  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#1af0f0,#1571e9);
+    transform:rotateY(calc(90deg * var(--i))) translateZ(200px);
+  }
+
+  .top
+  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+ 
+    background: linear-gradient(#47f4fa,#0763ad);
+    transform:rotateX(90deg) translateZ(150px); 
+  }
+
+  
+  .top::before
+  {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background: #60e4fc;
+    transform: translateZ(-300px); 
+    filter: blur(50px);
+    box-shadow: 0 0 50px rgba(0, 26, 255, 0.774),
+    0 0 50px rgba(41, 119, 235, 0.705),
+    0 0 75px rgba(74, 151, 240, 0.767),
+    0 0 100px rgba(9, 204, 230, 0.801),
+    0 0 125px rgba(126, 226, 243, 0.836),
+  }
+
+</style>
+<body >
+<div class="flex">
+    <div class="cube">
+      <div class="top"><br><br><br>
+        <center><button class="btn btn-primary"><a href="{% url 'mocategories'%}" class="text-white">< back</a></button></center></div>
+      <div>
+        <span style="--i:0;"><br><br><p class="btn btn-light">seats are not opening right now!Please come back again!ok Thank you!</p></span>
+        <span style="--i:1;"><br><br>seats are not opening right now!Please come back again!ok Thank you!</span>
+        <span style="--i:2;"><br><br><p class="btn btn-light">seats are not opening right now!Please come back again!ok Thank you!</p></span>
+        <span style="--i:3;"><br><br>seats are not opening right now!Please come back again!ok Thank you!</span>
+      </div>
+
+    </div>
+   </div>
+</body>
