@@ -25,4 +25,7 @@ urlpatterns = [
     path('myadmin/', include('myadmin.urls')),
     path('login/', views.login_views,name="login"),
     path('logout/', views.logout_views,name="logout"),
-] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
