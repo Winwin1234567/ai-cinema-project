@@ -27,7 +27,7 @@ COPY . .
 
 # Set environment variables for Django
 ENV PYTHONUNBUFFERED=1
-ENV DJANGO_SETTINGS_MODULE=myproject.settings
+ENV DJANGO_SETTINGS_MODULE=aicinema.settings
 
 # Collect static files (WhiteNoise)
 RUN python manage.py collectstatic --noinput
@@ -36,4 +36,4 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8080
 
 # Run Gunicorn using $PORT from Railway
-CMD ["gunicorn", "mymovie.wsgi:application", "--bind", "0.0.0.0:$PORT", "--workers", "3"]
+CMD ["gunicorn", "aicinema.wsgi:application", "--bind", "0.0.0.0:$PORT", "--workers", "3"]
