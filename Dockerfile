@@ -36,4 +36,5 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8080
 
 # Run Gunicorn using $PORT from Railway
-CMD ["gunicorn", "aicinema.wsgi:application", "--bind", "0.0.0.0:$PORT", "--workers", "3"]
+
+CMD gunicorn aicinema.wsgi:application --bind 0.0.0.0:$PORT --workers 3
