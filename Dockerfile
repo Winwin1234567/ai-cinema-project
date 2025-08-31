@@ -31,7 +31,8 @@ ENV DJANGO_SETTINGS_MODULE=aicinema.settings
 
 # Collect static files (WhiteNoise)
 RUN python manage.py collectstatic --noinput
-
+# Collect static files
+RUN /opt/venv/bin/python manage.py collectstatic --noinput
 # Expose the port Railway will use
 EXPOSE 8080
 
