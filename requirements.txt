@@ -24,7 +24,7 @@ requests==2.31.0
 urllib3==2.0.7
 certifi==2024.8.30
 charset-normalizer==3.4.0
-idna==3.7  # upgraded from 2.8 (safer)
+idna==2.8  # upgraded from 2.8 (safer)
 
 # Parsing / Serialization
 beautifulsoup4==4.12.3
